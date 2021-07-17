@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load static i18n crispy_forms_tags %}
+
+{% block title %}
+Welcome to - {{ block.super }}
+{% endblock %}
+
+{% block description %}
+Techydra Organisation support and chat system for assisting customers and staffs take care of their technical and it's related issues within and outside the company or organization.  
+{% endblock %}
+
+{% block og_description %}
+Techydra Organisation support and chat system for assisting customers and staffs take care of their technical and it's related issues within and outside the company or organization.  
+{% endblock %}
+
+{% block og_author %}
+{{ block.super }}
+{% endblock %}
+
+{% block og_title %}
+Welcome to - {{ block.super }}
+{% endblock %}
+
+{% block og_url %}
+{{ block.super }}
+{% endblock %}
+
+{% block og_sitename %}
+Hickup
+{% endblock %}
+
+{% block extra_css %}{% endblock %}
+
+{% block canonical %}{% url 'home' %}{% endblock %}
+
+{% block keywords %}django website, built with django, support system built with django, customer support system built with django, support ticketing system built with django, django websites, customer support, customer help, customer support system, multi user support system, organisational support system, company support system, ticket support system, organisational forum, Hickup, hiccup, techydra, techydra ltd, techydra limited, techydra solutions, techydra softwares{% endblock %}
+
+{% block body_class %}class="stretched search-overlay"{% endblock %}
+
+{% block slider %}
+{% include "snippets/header.html" %}
+{% endblock %}
+
+{% block content %}
+{% endblock %}
+
+{% block modal %}
+{% endblock %}
+
+
+{% block inline_javascript %}
+<script>
+    jQuery(document).ready(function () {
+
+      tinymce.init({
+        selector: '#post-message',
+        menubar: false,
+        plugins: [
+          "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+          "searchreplace wordcount visualblocks visualchars code fullscreen",
+          "insertdatetime media nonbreaking save table contextmenu directionality",
+          "emoticons template paste textcolor colorpicker textpattern"
+        ],
+        setup: function (editor) {
+          editor.on('change', function (e) {
+            editor.save();
+          });
+        }
+      });
+    });
+  </script>
+
+{% endblock %}

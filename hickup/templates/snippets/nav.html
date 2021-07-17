@@ -1,0 +1,183 @@
+{% load static i18n crispy_forms_tags %}
+
+
+{% url 'home' as home_url %}
+{% url 'about' as about_url %}
+{% url 'topics:list' as topics_url %}
+
+<!-- Header
+		============================================= -->
+<header id="header" class="full-header header-size-md" data-mobile-sticky="true">
+    <div id="header-wrap">
+        <div class="container">
+            <div class="header-row">
+
+                <!-- Logo
+						============================================= -->
+                <div id="logo">
+                    <a href="{% url 'home' %}" class="standard-logo"><img src="{% static 'images/logo.png' %}"
+                            alt="Canvas Logo"></a>
+                    <a href="{% url 'home' %}" class="retina-logo"><img src="{% static 'images/logo@2x.png' %}"
+                            alt="Canvas Logo"></a>
+                </div><!-- #logo end -->
+
+                <div class="header-misc ml-0">
+
+                    <!-- Top Search
+							============================================= -->
+                    <div id="top-search" class="header-misc-icon">
+                        <a href="#" id="top-search-trigger"><i class="icon-line-search"></i><i
+                                class="icon-line-cross"></i></a>
+                    </div><!-- #top-search end -->
+
+                    {% if request.user.is_authenticated %}
+                    <!-- Top Account
+							============================================= -->
+                    <div class="header-misc-icon">
+                        <a href="#" id="notifylink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                            data-offset="12,12"><i class="icon-line-bell notification-badge"></i></a>
+                        <div class="dropdown-menu dropdown-menu-right py-0 m-0 overflow-auto"
+                            aria-labelledby="notifylink" style="width: 320px; max-height: 300px">
+                            <span
+                                class="dropdown-header border-bottom border-f5 font-weight-medium text-uppercase ls1">Notifications</span>
+                            <div class="list-group list-group-flush">
+                                <a href="#" class="d-flex list-group-item">
+                                    <img loading=lazy src="{% static 'images/user.png' %}" width="35" height="35"
+                                        class="rounded-circle mr-3 mt-1" alt="Profile">
+                                    <div class="media-body">
+                                        <h5 class="my-0 font-weight-normal text-muted"><span
+                                                class="text-dark font-weight-bold">SemiColonWeb</span> has replied on
+                                            your post <span class="text-dark font-weight-bold">Package Generator –
+                                                Approx time for a file.</span></h5>
+                                        <small class="text-smaller">10 mins ago</small>
+                                    </div>
+                                </a>
+                                <a href="#" class="d-flex list-group-item">
+                                    <i class="icon-line-check badge-icon bg-success text-white mr-3 mt-1"></i>
+                                    <div class="media-body">
+                                        <h5 class="my-0 font-weight-normal text-muted"><span
+                                                class="text-dark font-weight-bold">SemiColonWeb</span> has marked to
+                                            your post as solved.</h5>
+                                        <small class="text-smaller">2 days ago</small>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <!-- Top Account
+							============================================= -->
+                    <div class="header-misc{% if request.user.is_authenticated %}-icon profile-image{% endif %}">
+                        {% if request.user.is_authenticated %}
+                        <a href="#" id="profilelink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                            data-offset="12,12"><img class="rounded-circle" src="{% if request.user.profile.image %}{{request.user.profile.image.url}}{% else %}{% static 'images/user.png' %}{% endif %}" alt="User"></a>
+                        <div class="dropdown-menu dropdown-menu-right py-0 m-0" aria-labelledby="profilelink">
+                            <a class="dropdown-item" href="{% url 'users:detail' request.user.username  %}"><i class="icon-line-head mr-2"></i>YOUR PROFILE</a>
+                            <a class="dropdown-item" href="{% url 'users:update'  %}"><i class="icon-line-edit mr-2"></i>EDIT PROFILE</a>
+                            <a class="dropdown-item" href=""><i class="icon-line-align-left mr-2"></i>YOUR TOPICS</a>
+                            <a class="dropdown-item" href="{% url 'account_logout' %}"><i class="icon-line-log-out mr-2"></i>SIGN OUT</a>
+                        </div>
+                        {% else %}
+                        <a href="#" class="button button-border border-warning px-4 rounded-sm font-weight-medium nott ls0 m-0 px-3 h-op-09 font-size-sm" id="registerlink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
+                            data-offset="12,12"><i
+                            class="icon-line-users mr-2"></i></a>
+                        <div class="dropdown-menu dropdown-menu-right py-0 m-0" aria-labelledby="registerlink">
+                            <a href="{% url 'account_login' %}"
+                                class="dropdown-item"><i
+                                    class="icon-line-log-in mr-2"></i>SIGN
+                                IN
+                            </a>
+                            <a href="{% url 'account_signup' %}"
+                                class="dropdown-item"><i
+                                    class="icon-line-user-plus mr-2"></i>CREATE
+                                ACCOUNT
+                            </a>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                </div>
+
+                <div id="primary-menu-trigger">
+                    <svg class="svg-trigger" viewBox="0 0 100 100">
+                        <path
+                            d="m 30,33 h 40 c 3.722839,0 7.5,3.126468 7.5,8.578427 0,5.451959 -2.727029,8.421573 -7.5,8.421573 h -20">
+                        </path>
+                        <path d="m 30,50 h 40"></path>
+                        <path
+                            d="m 70,67 h -40 c 0,0 -7.5,-0.802118 -7.5,-8.365747 0,-7.563629 7.5,-8.634253 7.5,-8.634253 h 20">
+                        </path>
+                    </svg>
+                </div>
+
+                <!-- Primary Navigation
+						============================================= -->
+                <nav class="primary-menu">
+
+                    <ul class="menu-container">
+                        <li class="menu-item {% if request.path == home_url %}current{% endif %}"><a class="menu-link" href="{% url 'home' %}">
+                                <div>HOME</div>
+                            </a></li>
+                        <li class="menu-item {% if request.path == about_url %}current{% endif %}"><a class="menu-link" href="{% url 'about' %}">
+                                <div>ABOUT</div>
+                            </a></li>
+                        <li class="menu-item {% if request.path == topics_url %}current{% endif %}"><a class="menu-link" href="{% url 'topics:list' %}">
+                                <div>TOPICS</div>
+                            </a></li>
+                        <li class="menu-item"><a class="menu-link" href="">
+                                <div>CHATS</div>
+                            </a></li>
+                        <li class="menu-item"><a class="menu-link" href="https://www.techydra.ltd/">
+                                <div>TECHYDRA</div>
+                            </a></li>
+                    </ul>
+
+                </nav><!-- #primary-menu end -->
+
+                <form class="top-search-form bg-alt dark" action="search.html" method="get">
+                    <div class="container row justify-content-center">
+                        <div class="col-sm-8">
+                            <input type="text" name="q" class="form-control form-control-lg mb-5 border-color" value=""
+                                placeholder="Type Your Query &amp; Hit Enter.." autocomplete="off">
+                            <div class="row col-mb-30">
+                                <div class="col-md-6">
+                                    <div class="widget widget_links clearfix">
+                                        <h4 class="">Recent Topics</h4>
+                                        <ul>
+                                            <li><a href="demo-forum-single.html">Package Generator – Approx time for a
+                                                    file</a></li>
+                                            <li><a href="demo-forum-single.html">Open sub-menu touching menu-item
+                                                    name</a></li>
+                                            <li><a href="demo-forum-single.html">Portfolio Overlay Slide fadein
+                                                    fadeout</a></li>
+                                            <li><a href="demo-forum-single.html">Show menu .dropdown-menu down only</a>
+                                            </li>
+                                            <li><a href="demo-forum-single.html">Couldnt Generate Package Snippet</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="widget widget_links clearfix">
+                                        <h4 class="">Helpful Documentation</h4>
+                                        <ul>
+                                            <li><a href="demo-forum-single.html">How to Install</a></li>
+                                            <li><a href="demo-forum-single.html">How to setup Niche Demos</a></li>
+                                            <li><a href="demo-forum-single.html">Header Layouts and Styles</a></li>
+                                            <li><a href="demo-forum-single.html">Setup Forms</a></li>
+                                            <li><a href="demo-forum-single.html">Setup RTL</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <div class="header-wrap-clone"></div>
+</header><!-- #header end -->

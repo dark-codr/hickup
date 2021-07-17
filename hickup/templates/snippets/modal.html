@@ -1,0 +1,48 @@
+{% load static i18n crispy_forms_tags %}
+
+<!-- Modal -->
+<div class="modal fade" id="modal-signin" tabindex="-1" aria-labelledby="modal-signin" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-white p-4 p-md-5 rounded">
+            <h3 class="h2 font-weight-bolder mb-4">Create a New Topic</h3>
+            <form class="row mb-0" action="#" method="post" enctype="multipart/form-data">
+                <div class="col-12 form-group mb-4">
+                    <textarea name="post-message" id="post-message" class="form-control" cols="30" rows="10"></textarea>
+                </div>
+                <div class="clear"></div>
+                <div class="col-6 form-group">
+                    <small class="text-muted">Maximum file size allowed is 2048 KB.</small>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="file-input">
+                        <label class="custom-file-label nott ls0 mb-0 font-weight-normal" for="file-input">Choose
+                            file</label>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="col-12 form-group mb-1">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                        <label class="form-check-label nott ls0 mb-0 font-weight-semibold" for="inlineCheckbox1">Set as
+                            a Private Reply</label>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="col-12 form-group">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                        <label class="form-check-label nott ls0 mb-0 font-weight-semibold" for="inlineCheckbox2">Email
+                            me when Someone Replies</label>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <button type="submit" name="submit"
+                        class="button button-large bg-alt border border-width-2 rounded-sm font-weight-medium nott ls0 ml-0">Submit
+                        Now</button>
+
+                    <button type="button" data-dismiss="modal" aria-label="Close"
+                        class="button button-large button-border border-default h-bg-danger rounded-sm font-weight-medium nott ls0 ml-0">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

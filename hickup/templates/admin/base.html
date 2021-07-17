@@ -1,0 +1,30 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+
+{% block extrahead %}
+<link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/favicons/apple-touch-icon.png' %}">
+<link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicons/favicon-32x32.png' %}">
+<link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicons/favicon-16x16.png' %}">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="icon" href="{% static 'images/favicons/favicon.ico' %}">
+{% endblock %}
+
+{% block javascripts %}
+<script>
+    tinymce.init({
+        selector: 'textarea',
+        plugins: [
+          "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+          "searchreplace wordcount visualblocks visualchars code fullscreen",
+          "insertdatetime media nonbreaking save table contextmenu directionality",
+          "emoticons template paste textcolor colorpicker textpattern"
+        ],
+        setup: function (editor) {
+          editor.on('change', function (e) {
+            editor.save();
+          });
+        }
+      });
+</script>
+{% endblock %}

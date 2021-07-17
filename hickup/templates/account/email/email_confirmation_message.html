@@ -1,0 +1,29 @@
+{% extends 'emails/base.html' %}
+{% load static account i18n %}
+
+{% block email_title %}
+{% blocktrans %}Please Confirm Your E-mail Address{% endblocktrans %}
+{% endblock email_title %}
+
+{% block email_subject %}
+{% blocktrans %}Please Confirm Your E-mail Address{% endblocktrans %}
+{% endblock email_subject %}
+
+{% block email_body %}
+
+{% user_display user as user_display %}
+{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}
+You're receiving this e-mail because user {{ user_display }} has given your e-mail address to register an account on {{ site_domain }}.
+<br>
+<br>
+To confirm this is correct, copy this link {{ activate_url }} or click the button below.
+{% endblocktrans %}
+{% endblock email_body %}
+
+{% block button_activate %}
+{{ activate_url }}
+{% endblock button_activate %}
+
+{% block button_title %}
+CONFIRM EMAIL
+{% endblock button_title %}

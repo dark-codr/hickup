@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% load static i18n crispy_forms_tags %}
+
+
+{% block title %}{{ user.username }} - {{ block.super }}{% endblock %}
+
+{% block description %}
+Update Profile for {{user.username}} as a user in Hickup.  
+{% endblock %}
+
+{% block og_description %}
+Update Profile for {{user.username}} as a user in Hickup.  
+{% endblock %}
+
+{% block og_author %}
+{{ block.super }}
+{% endblock %}
+
+{% block og_title %}
+Update Profile for {{user.username}} as a user in Hickup.  
+{% endblock %}
+
+{% block og_url %}
+{% url 'users:update' %}
+{% endblock %}
+
+{% block og_sitename %}
+Hickup
+{% endblock %}
+
+{% block extra_css %}{% endblock %}
+
+{% block canonical %}
+{% url 'users:update' %}
+{% endblock %}
+
+{% block keywords %}django website, built with django, support system built with django, customer support system built with django, support ticketing system built with django, django websites, customer support, customer help, customer support system, multi user support system, organisational support system, company support system, ticket support system, organisational forum, Hickup, hiccup, techydra, techydra ltd, techydra limited, techydra solutions, techydra softwares{% endblock %}
+
+{% block body_class %}class="stretched search-overlay"{% endblock %}
+
+{% block slider %}
+<!-- Page Title
+============================================= -->
+<section id="page-title" class="bg-color border-bottom-0">
+  <div class="container">
+    <div class="row align-items-center">
+      <img src="{% if request.user.profile.image %}{{request.user.profile.image.url}}{% else %}{% static 'images/user.png' %}{% endif %}" alt="Author" class="rounded-circle mr-3 border border-width-3 border-white" width="120" height="120">
+      <div>
+        <h2 class="h1 border-bottom border-dark border-width-4" style="font-weight: 800">{{user.fullname|truncatechars:4|title}}</h2>
+        <p class="mb-0">Forum Role: <strong>{{user.role}}</strong></p>
+      </div>
+    </div>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a class="alt-color" href="{% url 'home' %}">HOME</a></li>
+      <li class="breadcrumb-item text-black-50 active" aria-current="page">{{user.fullname}}</li>
+    </ol>
+  </div>
+</section>
+
+<!-- Page Sub Menu
+============================================= -->
+<div id="page-menu" class="no-sticky">
+  <div id="page-menu-wrap" class="bg-alt">
+    <div class="container">
+      <div class="page-menu-row">
+
+        <nav class="page-menu-nav">
+          <ul class="page-menu-container">
+            <li class="page-menu-item"><a href="{% url 'users:detail' user.username %}"><div>Profile</div></a></li>
+            <li class="page-menu-item"><a href="#"><div>Topics Started</div></a></li>
+            {% if object == request.user %}
+            <!-- Action buttons -->
+
+            <li class="page-menu-item"><a href="#"><div>Replies Created</div></a></li>
+            <li class="page-menu-item current"><a href="{% url 'users:update' %}"><div>Edit Profile</div></a></li> 
+            <li class="page-menu-item"><a href="{% url 'account_email' %}"><div>Set E-Mail</div></a></li>
+            
+            <!-- Your Stuff: Custom user template urls -->
+
+            <!-- End Action buttons -->
+            {% endif %}
+
+          </ul>
+        </nav>
+
+        <div id="page-menu-trigger"><i class="icon-reorder"></i></div>
+
+      </div>
+    </div>
+  </div>
+</div><!-- #page-menu end -->
+{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+<div class="container">
+  <h1>{{ user.username|title }}</h1>
+  <form class="form-horizontal" method="post" action="{% url 'users:update' %}">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <div class="control-group">
+      <div class="controls">
+        <button type="submit" class="button button-primary btn-block">UPDATE PROFILE</button>
+      </div>
+    </div>
+  </form>
+</div>
+</div>
+</div>
+{% endblock %}

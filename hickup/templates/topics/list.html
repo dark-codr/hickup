@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load static i18n crispy_forms_tags %}
+
+{% block title %}
+Topics - {{ block.super }}
+{% endblock %}
+
+{% block description %}
+{% blocktrans %}
+Get to read through our indexed knowledge base to find answers to questions and topics you may have.    
+{% endblocktrans %}
+{% endblock %}
+
+{% block og_description %}
+{% blocktrans %}
+Get to read through our indexed knowledge base to find answers to questions and topics you may have.    
+{% endblocktrans %}
+{% endblock %}
+
+{% block og_author %}
+{{ block.super }}
+{% endblock %}
+
+{% block og_title %}
+Topics - {{ block.super }}
+{% endblock %}
+
+{% block og_url %}
+{% url 'topics:list' %}
+{% endblock %}
+
+{% block og_sitename %}
+Hickup
+{% endblock %}
+
+
+{% block extra_css %}{% endblock %}
+
+{% block canonical %}
+{% url 'topics:list' %}
+{% endblock %}
+
+{% block keywords %}django website, built with django, support system built with django, customer support system built with django, support ticketing system built with django, django websites, customer support, customer help, customer support system, multi user support system, organisational support system, company support system, ticket support system, organisational forum, Hickup, hiccup, techydra, techydra ltd, techydra limited, techydra solutions, techydra softwares{% endblock %}
+
+{% block body_class %}class="stretched search-overlay"{% endblock %}
+
+{% block slider %}
+<!-- Page Title
+============================================= -->
+<section id="page-title" class="bg-color py-6 page-title-center text-center">
+    <div class="container">
+        <h2 class="h2" style="font-weight: 800">Knowledge Base</h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a class="alt-color" href="{% url 'home' %}">HOME</a></li>
+            <li class="breadcrumb-item"><a class="alt-color" href="{% url 'topics:list' %}">TOPICS</a></li>
+            <li class="breadcrumb-item text-black-50 active" aria-current="page">About HICKUP</li>
+        </ol>
+    </div>
+</section>
+{% endblock %}
+
+{% block content %}
+{% endblock %}
+
+{% block modal %}
+{% endblock %}
+
+{% block inline_javascript %}
+{% endblock %}

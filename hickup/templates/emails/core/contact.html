@@ -1,0 +1,23 @@
+{% extends 'emails/base.html' %}
+{% load static %}
+
+{% url 'admin:index' as dashboard_url %}
+{% block email_title %}
+{% blocktrans %}{{contact_subject}}{% endblocktrans %}
+{% endblock %}
+
+{% block email_subject %}
+{% blocktrans %}{{contact_subject}}{% endblocktrans %}
+{% endblock %}
+
+{% block email_body %}
+{% blocktrans %}{{contact_message|safe}}{% endblocktrans %}
+{% endblock %}
+
+{% block button_activate %}
+{{ dashboard_url }}
+{% endblock %}
+
+{% block button_title %}
+VISIT ADMIN DASBOARD
+{% endblock %}

@@ -1,0 +1,58 @@
+{% load static i18n crispy_forms_tags %}
+
+<!-- Slider
+		============================================= -->
+<section id="slider" class="slider-element bg-color">
+    <div class="container">
+        <div class="row h-100">
+            <div class="col-lg-6 d-flex align-self-center flex-column pt-5 pb-0 py-lg-6 mb-0 my-lg-4">
+                <p class="mb-3 text-larger font-weight-light">
+                    Hello,
+                    {% if request.user.is_authenticated %}
+                    <strong class="font-weight-bold"><u>{{request.user.fullname|title}}</u></strong>
+                    {% else %}
+                    <strong class="font-weight-bold"><u>Hickkie</u></strong>
+                    {% endif %}
+                </p>
+                <h2 class="display-4" style="font-weight: 800">Welcome to the # 1 customer/organizational support system.</h2>
+                <p>
+                    Feel free to search our knowledge base for answers to questions people are asking about within the organization.
+                </p>
+                <div class="input-group input-group-lg mt-2 mb-4">
+                    <input class="form-control rounded-left border-0" type="search" placeholder="Search Your Topics.."
+                        aria-label="Search">
+                    <div class="input-group-append">
+                        <button class="btn btn-light border-0" type="submit"><i class="icon-line-search"></i></button>
+                    </div>
+                </div>
+                <div>
+                    <a href="#" data-toggle="modal" data-target="#modal-signin"
+                        class="button button-large border border-width-2 bg-alt py-2 rounded-sm font-weight-medium nott ls0 ml-0 ml-sm-1 h-op-09"><i
+                            class="icon-line-file-add"></i>Create A New Topic</a>
+                    <a href="{% url 'topics:list' %}"
+                        class="button button-large button-border rounded-sm font-weight-medium nott h-bg-alt ls0 ml-0"><i
+                            class="icon-line-align-left"></i>Browse All Topics</a>
+                </div>
+            </div>
+
+            <div class="col-lg-6 d-flex align-self-end flex-column">
+                <img src="{% static 'images/svgs/hero.svg' %}" loading=lazy alt="Hero Image"
+                    style="z-index: 3; transform: translateY(45px);">
+            </div>
+        </div>
+    </div>
+    <div class="bg-alt py-5">
+        <div class="container">
+            <div class="d-flex">
+                <h4 class="mb-0"><span class="counter counter-inherit font-weight-normal text-white"><i
+                            class="icon-line-users icon-fw"></i> <span class="color font-weight-semibold"
+                            data-from="0" data-to="{% if total_members > 0 %}{{total_members}}{% else %}0{% endif %}" data-refresh-interval="50" data-speed="2000"></span>
+                        Members Registered.</span></h4>
+                <h4 class="mb-0 ml-5"><span class="counter counter-inherit font-weight-normal text-white"><i
+                            class="icon-line-message-circle icon-fw"></i> <span class="color font-weight-semibold"
+                            data-from="0" data-to="{% if total_topics > 0 %}{{total_topics}}{% else %}0{% endif %}" data-refresh-interval="50" data-speed="2000"></span> Topics
+                        Created.</span></h4>
+            </div>
+        </div>
+    </div>
+</section>
