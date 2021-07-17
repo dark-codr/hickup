@@ -220,10 +220,10 @@ MEDIA_URL = "/media/"
 ADMIN_MEDIA_PREFIX = "/admin/media/"
 
 # List of upload handler classes to be applied in order.
-FILE_UPLOAD_HANDLERS = [
-    "django.core.files.uploadhandler.MemoryFileUploadHandler",
-    "django.core.files.uploadhandler.TemporaryFileUploadHandler",
-]
+# FILE_UPLOAD_HANDLERS = [
+#     "django.core.files.uploadhandler.MemoryFileUploadHandler",
+#     "django.core.files.uploadhandler.TemporaryFileUploadHandler",
+# ]
 
 # Maximum size, in bytes, of a request before it will be streamed to the
 # file system instead of into memory.
@@ -263,13 +263,6 @@ TEMPLATES = [
                 "django.template.context_processors.static",
                 "django.template.context_processors.tz",
                 "django.contrib.messages.context_processors.messages",
-
-                "hickup.topics.context_processors.helpful_topics",
-                "hickup.topics.context_processors.latest_topics",
-                "hickup.topics.context_processors.total_topics",
-                "hickup.users.context_processors.total_members",
-
-
                 "hickup.utils.context_processors.settings_context",
             ],
         },
